@@ -1,0 +1,87 @@
+using System;
+
+class Program
+{
+    static char[,] mapa = new char[15, 30]; // 🔥 AGORA 15 por 30
+    
+    // Posição inicial do jogador
+    static int px = 2, py = 2; 
+
+    static void Main()
+    {
+        Console.ForegroundColor = ConsoleColor.Green; // Cor verde do mapa
+
+        IniciarMapa();
+        MostrarMapa();
+        
+        Console.ResetColor();
+        Console.ReadKey();
+    }
+
+    // =====================================
+    // MAPA
+    // =====================================
+
+    static void IniciarMapa()
+    {
+        for (int y = 0; y < mapa.GetLength(0); y++)
+        {
+            for (int x = 0; x < mapa.GetLength(1); x++)
+            {
+                if (y == 0 || y == mapa.GetLength(0) - 1 ||
+                    x == 0 || x == mapa.GetLength(1) - 1)
+                {
+                    mapa[y, x] = '#'; 
+                }
+                else
+                {
+                    mapa[y, x] = '.';
+                }
+            }
+        }
+
+        // Obstáculos fixos (você pode reorganizar depois se quiser)
+        mapa[4, 5] = '#';
+        mapa[5, 5] = '#';
+        mapa[6, 5] = '#';
+
+        mapa[3, 12] = '#';
+        mapa[4, 12] = '#';
+
+        mapa[8, 14] = '#';
+        mapa[8, 15] = '#';
+        mapa[9, 14] = '#';
+
+        // Jogador
+        mapa[py, px] = 'P';
+    }
+
+    static void MostrarMapa()
+    {
+        Console.WriteLine("\n========== Mapa Estático (15 x 30) ==========");
+
+        for (int y = 0; y < mapa.GetLength(0); y++)
+        {
+            for (int x = 0; x < mapa.GetLength(1); x++)
+            {
+                char c = mapa[y, x];
+
+                switch (c)
+                {
+                    case '#':
+                        Console.Write("[]"); 
+                        break;
+                    case '.':
+                        Console.Write("  ");
+                        break;
+                    case 'P':
+                        Console.Write("P ");
+                        break;
+                }
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("==================================================");
+    }
+}
