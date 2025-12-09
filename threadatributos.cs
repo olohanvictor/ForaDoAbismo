@@ -78,7 +78,7 @@ public class Arqueiro : Personagem
 // Classe principal que roda o programa
 public class Program
 {
-    static bool jogoRodando = true; // Flag para controlar o loop do jogo
+    static bool jogoRodando = true; //  para controlar o loop do jogo
 
     public static void Main()
     {
@@ -91,7 +91,7 @@ public class Program
             {
                 string input = Console.ReadLine().ToLower(); // Lê o comando do usuário e transforma em minúsculo
 
-                if (input == "atributos") // Se o comando for "atributos"
+                if (input == "atributos") // Se o comando for "atributos", ele vai escrever os atributos de acordo com a classe
                 {
                     Console.WriteLine("\n========== ATRIBUTOS ==========");
 
