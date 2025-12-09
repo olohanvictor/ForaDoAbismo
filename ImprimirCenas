@@ -1,0 +1,17 @@
+using System;
+class Cenas {
+  public void CenaInicial() {
+    Console.WriteLine("O personagem começa a aventura na cela de escravos de Velkynvelve. Despido de tudo, exceto sua roupa de baixo, ele está a mercê dos elfos negros e na companhia de outros prisioneiros, muitos dos quais não são o que parecem");
+  }
+  
+  public static void Main()
+  {
+    Cenas oi = new Cenas();
+    oi.CenaInicial();
+  }
+
+
+  public void Cena___() {
+    Console.WriteLine("...");
+  }
+  }
