@@ -4,12 +4,10 @@ abstract class Sistemas
 {
     public static void Menu()
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-
         Console.WriteLine("=======================================");
         Console.WriteLine("         Fora do Abismo              "); //isso é por hora
         Console.WriteLine("=======================================");
-        Console.WriteLine("1 - Iniciar Nova Aventura");
+        Console.WriteLine("1 - Iniciar Jogo");
         Console.WriteLine("2 - Informacoes");
         Console.WriteLine("3 - Creditos");
         Console.WriteLine("0 - Sair");
@@ -21,16 +19,16 @@ abstract class Sistemas
         switch(opcao) 
         {
             case "1":
-                Console.WriteLine("voce inicia sua jornada heroica!");
+                Console.WriteLine("..."); //CT e MAIN vai implementar
                 break;
             case "2":
-                Console.WriteLine("...");
+                Console.WriteLine("..."); //sofrerá alteracoes
                 break;
             case "3":
-                Console.WriteLine("2K3");
+                Console.WriteLine("2K3"); //sofrerá alteracoes
                 break;
             case "0":
-                Console.WriteLine("Até a próxima, aventureiro!");
+                Console.WriteLine("Até a próxima, aventureiro!"); //sofrerá alteracoes
                 break;
             default:
                 Console.WriteLine("opção inválida, tente novamente.");
@@ -44,6 +42,6 @@ class Principal
 {
     static void Main() 
     {
-    Sistemas.Menu();
+    Sistemas.Menu(); // teste
     }
 }
