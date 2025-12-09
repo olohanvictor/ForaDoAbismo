@@ -1,0 +1,49 @@
+using System;
+
+abstract class Sistemas 
+{
+    public static void Menu()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+
+        Console.WriteLine("=======================================");
+        Console.WriteLine("         Fora do Abismo              "); //isso é por hora
+        Console.WriteLine("=======================================");
+        Console.WriteLine("1 - Iniciar Nova Aventura");
+        Console.WriteLine("2 - Informacoes");
+        Console.WriteLine("3 - Creditos");
+        Console.WriteLine("0 - Sair");
+        Console.WriteLine("=======================================");
+        Console.Write("Escolha uma opcao: ");
+
+        string opcao = Console.ReadLine();
+
+        switch(opcao) 
+        {
+            case "1":
+                Console.WriteLine("voce inicia sua jornada heroica!");
+                break;
+            case "2":
+                Console.WriteLine("...");
+                break;
+            case "3":
+                Console.WriteLine("2K3");
+                break;
+            case "0":
+                Console.WriteLine("Até a próxima, aventureiro!");
+                break;
+            default:
+                Console.WriteLine("opção inválida, tente novamente.");
+                break;
+
+        }      
+    }
+}
+
+class Principal 
+{
+    static void Main() 
+    {
+    Sistemas.Menu();
+    }
+}
