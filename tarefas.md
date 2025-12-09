@@ -17,15 +17,15 @@
 | 13 | Guilherme Sodre Souza                            | Implementação       |                                                      |
 | 17 | João Victor Lima Honório                         | Implementação       |                                                      |
 | 18 | João Vitor Almeida Correa                        | Implementação       |                                                      |
-| 3  | André Luiz Dutra Sales Filho                     | Mapa                |                                                      |
-| 5  | Arthur Porto Coutinho                            | Mapa                |                                                      |
-| 7  | Bruno Tavares dos Santos                         | Mapa                |                                                      |
-| 9  | Carolline de Silva Pimentel                      | Mapa                |                                                      |
-| 10 | Cauã Henrique do Amaral Souza                    | Mapa                |                                                      |
-| 12 | Giovanna Oliveira dos Santos                     | Mapa                |                                                      |
-| 29 | Matheus Santos Domingues                         | Mapa                |                                                      |
-| 33 | Raissa Diniz Falleiro                            | Mapa                |                                                      |
-| 38 | Vitor Hugo Mendes Pacheco                        | Mapa                |                                                      |
+| 3  | André Luiz Dutra Sales Filho                     | Mapa                |Está fazendo o Design de Mapa                         |
+| 5  | Arthur Porto Coutinho                            | Mapa                |Está fazendo o Design de Mapa                         |
+| 7  | Bruno Tavares dos Santos                         | Mapa                |Está fazendo o Mapa Combate                           |
+| 9  | Carolline de Silva Pimentel                      | Mapa                |Está fazendo o Design de Mapa                         |
+| 10 | Cauã Henrique do Amaral Souza                    | Mapa                |Está alterando as cores do mapa                       |
+| 12 | Giovanna Oliveira dos Santos                     | Mapa                |Está fazendo a documentação                           |
+| 29 | Matheus Santos Domingues                         | Mapa                |Está fazendo o Mapa Combate                           |
+| 33 | Raissa Diniz Falleiro                            | Mapa                |Está fazendo a documentação                           |
+| 38 | Vitor Hugo Mendes Pacheco                        | Mapa                |Está fazendo o Mapa Combate e auxiliando o restante do grupo    |
 | 6  | Arthur Santos Viellas                            | Sistema             |                                                      |
 | 21 | Lara Porto Muniz                                 | Sistema             |                                                      |
 | 26 | Manuella Thomaz Lino                             | Sistema             |                                                      |
