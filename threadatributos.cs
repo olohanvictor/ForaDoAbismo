@@ -40,16 +40,29 @@ public class Mago : Personagem
 {
     public Mago()
     {
-        fortitude = 7;
-        agilidade = 10;
-        sabedoria = 18;
-        forca = 5;
+        fortitude = 10;
+        agilidade = 8;
+        sabedoria = 16;
+        forca = 6;
 
-        hp = 15 + fortitude;
-        classearmadura = 10 + agilidade;
+        hp = 20 + fortitude;
+        classearmadura = 12 + agilidade;
     }
 }
 
+public class Arqueiro : Personagem
+{
+    public Arqueiro()
+    {
+        fortitude = 8;
+        agilidade = 16;
+        sabedoria = 7;
+        forca = 10;
+
+        hp = 15 + fortitude;
+        classearmadura = 20 + agilidade;
+    }
+}
 
 public class Program
 {
@@ -58,12 +71,10 @@ public class Program
     public static void Main()
     {
         
-        Personagem personagem = new Guerreiro();
-        // ou: Personagem personagem = new Mago();
+        Personagem personagem = new Arqueiro(); 
 
-       
+        
 
-        // THREAD QUE SEMPRE ESCUTA "atributos"
         Thread comandoThread = new Thread(() =>
         {
             while (jogoRodando)
@@ -78,6 +89,8 @@ public class Program
                         Console.WriteLine("Classe: GUERREIRO");
                     else if (personagem is Mago)
                         Console.WriteLine("Classe: MAGO");
+                    else if (personagem is Arqueiro)
+                        Console.WriteLine("Classe: ARQUEIRO");
 
                     personagem.Exibir();
 
@@ -88,6 +101,6 @@ public class Program
 
         comandoThread.Start();
 
-        
+       
     }
 }
