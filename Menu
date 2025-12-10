@@ -4,6 +4,66 @@ abstract class Sistemas
 {
     public static void Menu()
     {
+        string creditos =  
+            "========================================\n" +
+            "               CREDITOS\n" +
+            "========================================\n\n" +
+            
+            "GERENTE DO PROJETO\n" +
+            "Isabelly Sampaio Antunes\n\n" +
+            
+            "COMUNICAÇÃO\n" +
+            "Julia de Almeida dos Santos\n" +
+            "Khemeronn Sophia Freitas Faziolato\n" +
+            "Maria Victoria Espindola de Abreu Figueira Rocha\n" +
+            "Ruan Gonçalves Gustavo\n\n" +
+            
+            "COMBATE\n" +
+            "Ana Carolyna de Marins da Mota\n" +
+            "Caio Cabral Araujo\n" +
+            "Davi Fernandes de Oliveira Moreira\n" +
+            "Lohan Victor do Nascimento Silva\n" +
+            "Lucas Joe Felix dos Santos Abreu\n" +
+            "Paulo Vitor Silva Ferreira\n" +
+            "Rafael Almeida Diniz Filho\n" +
+            "Ryan Moraes Vieira\n" +
+            "Sofia de Sousa Sampaio\n\n" +
+            
+            "IMPLEMENTAÇAO POR:\n" +
+            "Guilherme Sodre Souza\n" +
+            "Joao Victor Lima Honorio\n" +
+            "Joao Vitor Almeida Correa\n\n" +
+            
+            "MAPA\n" +
+            "Andre Luiz Dutra Sales Filho\n" +
+            "Arthur Porto Coutinho\n" +
+            "Bruno Tavares dos Santos\n" +
+            "Carolline de Silva Pimentel\n" +
+            "Caua Henrique do Amaral Souza\n" +
+            "Giovanna Oliveira dos Santos\n" +
+            "Matheus Santos Domingues\n" +
+            "Raissa Diniz Falleiro\n" +
+            "Vitor Hugo Mendes Pacheco\n\n" +
+            
+            "SISTEMAS POR:\n" +
+            "Arthur Santos Costa Viellas\n" +
+            "Lara Porto Muniz\n" +
+            "Manuella Thomaz Lino\n" +
+            "Raphaella Vasquez Elias e Silva\n" +
+            "Joao Pedro da Silva Guimaraes\n\n" +
+            
+            "PERSONAGENS POR:\n" +
+            "Ana Clara Lanes Moura\n" +
+            "Arnaldo Oliveira Meirelles\n" +
+            "Isadora Figueira Faya\n" +
+            "Leticia dos Santos Silva Bastos\n" +
+            "Livia Barbosa Parente\n" +
+            "Maria Eduarda Elizeu Soares\n" +
+            "Miguel Ferreira Ribeiro Nunes\n" +
+            "Vitoria Coutinho Reis\n\n";
+            
+           
+            
         Console.WriteLine("=======================================");
         Console.WriteLine("         Fora do Abismo              "); //isso é por hora
         Console.WriteLine("=======================================");
@@ -22,10 +82,10 @@ abstract class Sistemas
                 Console.WriteLine("..."); //CT e MAIN vai implementar
                 break;
             case "2":
-                Console.WriteLine("..."); //sofrerá alteracoes
+                Console.WriteLine("Nas profundezas insondáveis do Subterrâneo, você desperta como prisioneiro dos drows — acorrentado, desarmado e à mercê da sacerdotisa Ilvara Mizzrym. O posto avançado de Velkynvelve é apenas o início de uma jornada perigosa que atravessa cavernas colossais, lagos intermináveis e a loucura crescente que ameaça corromper todo o reino subterrâneo. Entre criaturas hostis, demônios errantes e facções desesperadas pelo controle, você descobrirá que escapar é apenas a primeira etapa. O verdadeiro objetivo é simples e brutal: encontrar um caminho de volta à superfície. Retornar à luz, à liberdade, ao mundo que ficou para trás Mas cada túnel, cada cidade subterrânea e cada sombra viva parece conspirar para impedir essa fuga. Nada no Subterrâneo permite que um prisioneiro simplesmente vá embora. Rumores de algo maior e terrível rondam as profundezas, distorcendo mentes e despertando forças além da compreensão mortal. A cada passo, fica claro que a escuridão não quer apenas mantê-lo cativo — ela quer quebrá-lo. Esta é uma aventura de sobrevivência, escolhas difíceis e alianças improváveis em um cenário onde a escuridão é viva — e está sempre observando. Escapar do Subterrâneo será um feito possível… mas jamais fácil."); 
                 break;
             case "3":
-                Console.WriteLine("2K3"); //sofrerá alteracoes
+                Console.WriteLine(creditos); //sofrerá alteracoes
                 break;
             case "0":
                 Console.WriteLine("Até a próxima, aventureiro!"); //sofrerá alteracoes
