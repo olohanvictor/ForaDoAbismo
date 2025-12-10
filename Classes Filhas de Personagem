@@ -1,0 +1,56 @@
+public class Arqueiro : Personagem
+{
+	public Arqueiro()
+	{
+		fortitude = 8;
+		agilidade = 16;
+		sabedoria = 7;
+		forca = 10;
+		hp = 15 + fortitude;
+		classearmadura = 20 + agilidade;
+		
+		int recurso = 20;
+        
+		Ataque1 = new Ataque { dano = 5, pa = 2, nome = "Chuva de Flechas" , recurso = recurso - 3 , alcance = "medio" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Tiro de Flecha" , recurso = recurso - 1 , alcance = "medio" };
+
+	}
+
+}
+
+public class Mago : Personagem
+{
+	public Mago()
+	{
+		fortitude = 10;
+		agilidade = 8;
+		sabedoria = 16;
+		forca = 6;
+		hp = 20 + fortitude;
+		classearmadura = 12 + agilidade;
+		
+		int recurso = 20;
+        
+		Ataque1 = new Ataque { dano = 8, pa = 2, nome = "Bola de Fogo" , recurso = recurso - 5 , alcance = "curto" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Míssel Mágico" , recurso = recurso - 3 , alcance = "medio" };
+
+	}
+}
+
+public class Guerreiro : Personagem
+{
+	public Guerreiro()
+	{
+		fortitude = 15;
+		agilidade = 11;
+		sabedoria = 9;
+		forca = 16;
+		hp = 30 + fortitude;
+		classearmadura = 15 + agilidade;
+		
+		int recurso = 20
+		
+		Ataque1 = new Ataque { dano = 10, pa = 2, nome = "Investida Feroz" , recurso = recurso - 8 , alcance = "curto" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Corte de Machado" , recurso = recurso - 3 , alcance = "curto" };
+	}
+}
