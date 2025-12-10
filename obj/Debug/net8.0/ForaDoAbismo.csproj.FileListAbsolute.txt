@@ -1,0 +1,15 @@
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.GeneratedMSBuildEditorConfig.editorconfig
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.AssemblyInfoInputs.cache
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.AssemblyInfo.cs
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.csproj.CoreCompileInputs.cache
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.sourcelink.json
+/home/lohan/Documentos/Programations/ForaDoAbismo/bin/Debug/net8.0/ForaDoAbismo
+/home/lohan/Documentos/Programations/ForaDoAbismo/bin/Debug/net8.0/ForaDoAbismo.deps.json
+/home/lohan/Documentos/Programations/ForaDoAbismo/bin/Debug/net8.0/ForaDoAbismo.runtimeconfig.json
+/home/lohan/Documentos/Programations/ForaDoAbismo/bin/Debug/net8.0/ForaDoAbismo.dll
+/home/lohan/Documentos/Programations/ForaDoAbismo/bin/Debug/net8.0/ForaDoAbismo.pdb
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.dll
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/refint/ForaDoAbismo.dll
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.pdb
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ForaDoAbismo.genruntimeconfig.cache
+/home/lohan/Documentos/Programations/ForaDoAbismo/obj/Debug/net8.0/ref/ForaDoAbismo.dll
