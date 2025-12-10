@@ -1,0 +1,307 @@
+using System;
+
+public abstract class Personagem
+{
+    // para os Personagens
+	protected int fortitude { get; set; } = 0;
+	protected int agilidade { get; set; } = 0;
+	protected int sabedoria { get; set; } = 0;
+	protected int forca { get; set; } = 0;
+	protected int hp { get; set; }
+	protected int classearmadura { get; set; }
+
+    //os ataques
+	public Ataque Ataque1 { get; set; }
+	public Ataque Ataque2 { get; set; }
+	
+	//Para história
+	public string Artigo { get; protected set; }
+    public string GeneroEscolha { get; protected set; }
+    public string Pronome { get; protected set; }
+    public string Possessivo { get; protected set; }
+    public string Nome { get; protected set; } 
+
+	public class Ataque
+	{
+		public int dano;
+		public int pa;
+		public string nome;
+		public int custo;
+		public string alcance; //curto ou medio
+	}
+}
+
+ public void Atributo()
+{
+    int PontosDisponiveis = 10;
+
+    int forcatemp = 0;
+    int agilidadetemp = 0;
+    int fortitudetemp = 0;
+    int sabedoriatemp = 0;
+
+    while (PontosDisponiveis > 0)
+    {
+        Console.WriteLine("Pontos Restantes: " + PontosDisponiveis);
+        Console.WriteLine("Escolha um atributo para aumentar:");
+        Console.WriteLine("1 - Força");
+        Console.WriteLine("2 - Agilidade");
+        Console.WriteLine("3 - Fortitude");
+        Console.WriteLine("4 - Sabedoria");
+
+        string escolha = Console.ReadLine();
+
+        switch (escolha)
+        {
+            case "1":
+                forcatemp += 1;
+                PontosDisponiveis -= 1;
+                break;
+            case "2":
+                agilidadetemp += 1;
+                PontosDisponiveis -= 1;
+                break;
+            case "3":
+                fortitudetemp += 1;
+                PontosDisponiveis -= 1;
+                break;
+            case "4":
+                sabedoriatemp += 1;
+                PontosDisponiveis -= 1;
+                break;
+            default:
+                Console.WriteLine("Escolha inválida! Tente novamente.");
+                break;
+        }
+    }
+    
+    Jogador.forca = Jogador.forca + forcatemp;
+    Jogador.fortitude = Jogador.fortitude + fortitudetemp;
+    Jogador.agilidade = Jogador.agilidade + agilidadetemp;
+    Jogador.sabedoria = Jogador.sabedoria + sabedoriatemp;
+}
+
+//Classes Filhas
+public class Arqueiro : Personagem
+{
+	public Arqueiro()
+	{
+		fortitude = 8;
+		agilidade = 16;
+		sabedoria = 7;
+		forca = 10;
+		hp = 15 + fortitude;
+		classearmadura = 20 + agilidade;
+		
+		int recurso = 20;
+        
+		Ataque1 = new Ataque { dano = 5, pa = 2, nome = "Chuva de Flechas" , recurso = recurso - 3 , alcance = "medio" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Tiro de Flecha" , recurso = recurso - 1 , alcance = "medio" };
+
+	}
+
+}
+
+public class Mago : Personagem
+{
+	public Mago()
+	{
+		fortitude = 10;
+		agilidade = 8;
+		sabedoria = 16;
+		forca = 6;
+		hp = 20 + fortitude;
+		classearmadura = 12 + agilidade;
+		
+		int recurso = 20;
+        
+		Ataque1 = new Ataque { dano = 8, pa = 2, nome = "Bola de Fogo" , recurso = recurso - 5 , alcance = "curto" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Míssel Mágico" , recurso = recurso - 3 , alcance = "medio" };
+
+	}
+}
+
+public class Guerreiro : Personagem
+{
+	public Guerreiro()
+	{
+		fortitude = 15;
+		agilidade = 11;
+		sabedoria = 9;
+		forca = 16;
+		hp = 30 + fortitude;
+		classearmadura = 15 + agilidade;
+		
+		int recurso = 20
+		
+		Ataque1 = new Ataque { dano = 10, pa = 2, nome = "Investida Feroz" , recurso = recurso - 8 , alcance = "curto" };
+		Ataque2 = new Ataque { dano = 3, pa = 1, nome = "Corte de Machado" , recurso = recurso - 3 , alcance = "curto" };
+	}
+}
+
+public string DefinirNome()
+    {
+        string temp;
+        
+        do
+        {
+            Console.WriteLine("*** - Olá, bem vindo a esse novo mundo? Como posso te chamar nessa história? \nDigite um nome com até 15 caracteres:");
+            temp = Console.ReadLine();
+        } while (string.IsNullOrWhiteSpace(temp) || temp.Length > 15);
+        
+        temp = char.ToUpper(temp[0]) + temp.Substring(1).ToLower();
+        Nome = temp; 
+        return Nome;
+    }
+        
+
+    public void DefinirGenero()
+    {
+        do
+        {
+            Console.WriteLine("Com qual gênero você se identifica?\n1- Feminino\n2- Masculino");
+            GeneroEscolha = Console.ReadLine();
+            Console.Clear();
+
+            if (GeneroEscolha == "1" || GeneroEscolha == "2")
+            {
+                Artigo = GeneroEscolha == "1" ? "a" : "o";
+                Pronome = Artigo == "a" ? "la" : "le";
+                Possessivo = Artigo == "a" ? "dela" : "dele";
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida.");
+            }
+        } while (GeneroEscolha != "1" && GeneroEscolha != "2");
+    }
+
+    public void ContagemQuiz(ref string resp, ref int pontosGuerreiro, ref int pontosArqueiro, ref int pontosMago)
+    {
+        do
+        {
+            resp = Console.ReadLine();
+            Console.Clear();
+        
+            switch (resp)
+            {
+                case "1": pontosGuerreiro++; break;
+                case "2": pontosArqueiro++; break;
+                case "3": pontosMago++; break;
+                default:
+                    Console.WriteLine("Resposta inválida!\nSempre tenha certeza de quem você é.");
+                    break;
+            }
+
+        } while (resp != "1" && resp != "2" && resp != "3");    
+    }
+
+    public Personagem Quiz()
+    {
+        int pontosGuerreiro = 0;
+        int pontosArqueiro = 0;
+        int pontosMago = 0;
+        string resp = "";
+        string nomeTemporario = this.Nome; 
+
+        // --- Perguntas do Quiz ---
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Qual foi o momento mais marcante da sua história?");
+        Console.WriteLine("1 - Quando defendi meu pelotão sozinho contra aqueles Drows. Ali descobri quem eu era.");
+        Console.WriteLine("2 - A primeira vez que percebi que não precisava de ninguém me dizendo o que fazer.");
+        Console.WriteLine("3 - O instante em que vi magia pela primeira vez. Foi como compreender um novo idioma do universo.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Qual foi a melhor fase da sua vida?");
+        Console.WriteLine("1 - Agora. Cada desafio me deixa mais forte.");
+        Console.WriteLine("2 - Provavelmente agora. Não porque tudo esteja perfeito, mas porque finalmente escolho meu próprio caminho.");
+        Console.WriteLine("3 - “A melhor fase foi quando eu podia ler em paz, sem interrupções.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Quais são os seus valores mais importantes?");
+        Console.WriteLine("1 - Honra e lealdade.");
+        Console.WriteLine("2 - Liberdade e escolhas bem feitas.");
+        Console.WriteLine("3 - Conhecimento e busca honesta pela verdade.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Como você lida com o fracasso?");
+        Console.WriteLine("1 - Caio, levanto, continuo meu caminho. Simples.");
+        Console.WriteLine("2 - Reviso, ajusto, tento de novo. E faço piada no processo.");
+        Console.WriteLine("3 - Analiso, registro e tento novamente com uma abordagem diferente.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);        
+        }
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Qual é o seu maior medo?");
+        Console.WriteLine("1 - Falhar com alguém que confia em mim.");
+        Console.WriteLine("2 - Depender de alguém… e essa pessoa me deixar na mão.");
+        Console.WriteLine("3 - Perder o controle e ferir inocentes.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - O que te faz sentir verdadeiramente feliz?");
+        Console.WriteLine("1 - Ver meus companheiros seguros… e uma boa luta.");
+        Console.WriteLine("2 - Aquele silêncio perfeito depois de um disparo certeiro.");
+        Console.WriteLine("3 - Descobrir algo novo. Mesmo que seja pequeno.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+        
+        while (resp != "1" || resp != "2" || resp "3")
+        {
+        Console.WriteLine("Jorlan - Como você se reconecta consigo mesmo em momentos de crise?");
+        Console.WriteLine("1 - Treino até o corpo parar de pensar.");
+        Console.WriteLine("2 - Sumo por umas horas. Só eu e o vento.");
+        Console.WriteLine("3 - Eu paro tudo, respiro fundo. Isso me acalma.");
+        ContagemQuiz(ref resp, ref pontosGuerreiro, ref pontosArqueiro, ref pontosMago);
+        }
+        
+        // --- Determinação da Classe ---
+        Personagem Jogador;
+
+        if (pontosGuerreiro > pontosArqueiro && pontosGuerreiro > pontosMago) {
+            Jogador = new Guerreiro();
+        }
+        else if (pontosArqueiro > pontosGuerreiro && pontosArqueiro > pontosMago) {
+            Jogador = new Arqueiro(); 
+        }
+        else {
+            Jogador = new Mago();
+        }
+
+        // Transfere os metadados para o novo objeto Jogador
+        Jogador.Nome = nomeTemporario;
+        Jogador.Artigo = this.Artigo;
+        Jogador.Pronome = this.Pronome;
+        Jogador.Possessivo = this.Possessivo;
+        
+        return Jogador;
+    }
+    
+    public void Exibir()
+    {
+        Console.WriteLine($"\n--- Ficha de Personagem ---");
+        Console.WriteLine($"Nome: {Nome}");
+        Console.WriteLine($"Classe: {this.GetType().Name} ({Artigo} {this.GetType().Name})");
+        Console.WriteLine($"Pronomes: {Pronome}/{Possessivo}");
+        Console.WriteLine($"HP: {hp}");
+        Console.WriteLine($"Classe de Armadura: {classearmadura}");
+        Console.WriteLine($"Sabedoria: {sabedoria}");
+        Console.WriteLine($"Força: {forca}");
+        Console.WriteLine($"Agilidade: {agilidade}");
+        Console.WriteLine($"Fortitude: {fortitude}");
+        Console.WriteLine("---------------------------\n");
+    }
