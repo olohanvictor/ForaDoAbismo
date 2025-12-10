@@ -8,24 +8,31 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/lohan/.nuget/packages/": {}
+    "C:\\Users\\hjoao\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/lohan/Documentos/Programations/ForaDoAbismo/ForaDoAbismo.csproj",
+      "projectUniqueName": "C:\\Users\\hjoao\\source\\repos\\olohanvictor\\ForaDoAbismo\\ForaDoAbismo.csproj",
       "projectName": "ForaDoAbismo",
-      "projectPath": "/home/lohan/Documentos/Programations/ForaDoAbismo/ForaDoAbismo.csproj",
-      "packagesPath": "/home/lohan/.nuget/packages/",
-      "outputPath": "/home/lohan/Documentos/Programations/ForaDoAbismo/obj/",
+      "projectPath": "C:\\Users\\hjoao\\source\\repos\\olohanvictor\\ForaDoAbismo\\ForaDoAbismo.csproj",
+      "packagesPath": "C:\\Users\\hjoao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hjoao\\source\\repos\\olohanvictor\\ForaDoAbismo\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/lohan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\hjoao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -43,7 +50,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -59,12 +67,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/lohan/.dotnet/sdk/8.0.416/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
