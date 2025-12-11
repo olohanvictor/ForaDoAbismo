@@ -2,70 +2,41 @@ using System;
 
 abstract class Sistemas 
 {
+    
+    public static void Inicio()
+    {
+    string titulo = @"
+______                           _   _ _           _       
+| ___ \                         | | | (_)         | |      
+| |_/ / ___ _ __ ___    ______  | | | |_ _ __   __| | ___  
+| ___ \/ _ \ '_ ` _ \  |______| | | | | | '_ \ / _` |/ _ \ 
+| |_/ /  __/ | | | | |          \ \_/ / | | | | (_| | (_) |
+\____/ \___|_| |_| |_|           \___/|_|_| |_|\__,_|\___/ 
+
+           _____              
+          |  ___|              
+  __ _    | |_ ___  _ __ __ _  
+ / _` |   |  _/ _ \| '__/ _` | 
+| (_| |   | || (_) | | | (_| | 
+ \__,_|   \_| \___/|_|  \__,_| 
+            ______         ___  _     _                     _ 
+            |  _  \       / _ \| |   (_)                   | |
+            | | | |___   / /_\ \ |__  _ ___ _ __ ___   ___ | |
+            | | | / _ \  |  _  | '_ \| / __| '_ ` _ \ / _ \| |
+            | |/ / (_) | | | | | |_) | \__ \ | | | | | (_) |_|
+            |___/ \___/  \_| |_/_.__/|_|___/_| |_| |_|\___/(_)
+";
+    Console.OutputEncoding = System.Text.Encoding.UTF8;
+    Console.WriteLine(titulo);
+    Console.WriteLine(@"                     Pressione ENTER para continuar        ");
+    Console.ReadKey();
+    }
+    
     public static void Menu()
     {
-        string creditos =  
-            "========================================\n" +
-            "               CREDITOS\n" +
-            "========================================\n\n" +
-            
-            "GERENTE DO PROJETO\n" +
-            "Isabelly Sampaio Antunes\n\n" +
-            
-            "COMUNICAÇÃO\n" +
-            "Julia de Almeida dos Santos\n" +
-            "Khemeronn Sophia Freitas Faziolato\n" +
-            "Maria Victoria Espindola de Abreu Figueira Rocha\n" +
-            "Ruan Gonçalves Gustavo\n\n" +
-            
-            "COMBATE\n" +
-            "Ana Carolyna de Marins da Mota\n" +
-            "Caio Cabral Araujo\n" +
-            "Davi Fernandes de Oliveira Moreira\n" +
-            "Lohan Victor do Nascimento Silva\n" +
-            "Lucas Joe Felix dos Santos Abreu\n" +
-            "Paulo Vitor Silva Ferreira\n" +
-            "Rafael Almeida Diniz Filho\n" +
-            "Ryan Moraes Vieira\n" +
-            "Sofia de Sousa Sampaio\n\n" +
-            
-            "IMPLEMENTAÇAO POR:\n" +
-            "Guilherme Sodre Souza\n" +
-            "Joao Victor Lima Honorio\n" +
-            "Joao Vitor Almeida Correa\n\n" +
-            
-            "MAPA\n" +
-            "Andre Luiz Dutra Sales Filho\n" +
-            "Arthur Porto Coutinho\n" +
-            "Bruno Tavares dos Santos\n" +
-            "Carolline de Silva Pimentel\n" +
-            "Caua Henrique do Amaral Souza\n" +
-            "Giovanna Oliveira dos Santos\n" +
-            "Matheus Santos Domingues\n" +
-            "Raissa Diniz Falleiro\n" +
-            "Vitor Hugo Mendes Pacheco\n\n" +
-            
-            "SISTEMAS POR:\n" +
-            "Arthur Santos Costa Viellas\n" +
-            "Lara Porto Muniz\n" +
-            "Manuella Thomaz Lino\n" +
-            "Raphaella Vasquez Elias e Silva\n" +
-            "Joao Pedro da Silva Guimaraes\n\n" +
-            
-            "PERSONAGENS POR:\n" +
-            "Ana Clara Lanes Moura\n" +
-            "Arnaldo Oliveira Meirelles\n" +
-            "Isadora Figueira Faya\n" +
-            "Leticia dos Santos Silva Bastos\n" +
-            "Livia Barbosa Parente\n" +
-            "Maria Eduarda Elizeu Soares\n" +
-            "Miguel Ferreira Ribeiro Nunes\n" +
-            "Vitoria Coutinho Reis\n\n";
-            
-           
-            
+        Console.Clear();
         Console.WriteLine("=======================================");
-        Console.WriteLine("         Fora do Abismo              "); //isso é por hora
+        Console.WriteLine("         Fora do Abismo              "); 
         Console.WriteLine("=======================================");
         Console.WriteLine("1 - Iniciar Jogo");
         Console.WriteLine("2 - Informacoes");
@@ -79,29 +50,97 @@ abstract class Sistemas
         switch(opcao) 
         {
             case "1":
-                Console.WriteLine("..."); //CT e MAIN vai implementar
+                Console.WriteLine("..."); //CT e MAIN vão implementar
                 break;
             case "2":
                 Console.WriteLine("Nas profundezas insondáveis do Subterrâneo, você desperta como prisioneiro dos drows — acorrentado, desarmado e à mercê da sacerdotisa Ilvara Mizzrym. O posto avançado de Velkynvelve é apenas o início de uma jornada perigosa que atravessa cavernas colossais, lagos intermináveis e a loucura crescente que ameaça corromper todo o reino subterrâneo. Entre criaturas hostis, demônios errantes e facções desesperadas pelo controle, você descobrirá que escapar é apenas a primeira etapa. O verdadeiro objetivo é simples e brutal: encontrar um caminho de volta à superfície. Retornar à luz, à liberdade, ao mundo que ficou para trás Mas cada túnel, cada cidade subterrânea e cada sombra viva parece conspirar para impedir essa fuga. Nada no Subterrâneo permite que um prisioneiro simplesmente vá embora. Rumores de algo maior e terrível rondam as profundezas, distorcendo mentes e despertando forças além da compreensão mortal. A cada passo, fica claro que a escuridão não quer apenas mantê-lo cativo — ela quer quebrá-lo. Esta é uma aventura de sobrevivência, escolhas difíceis e alianças improváveis em um cenário onde a escuridão é viva — e está sempre observando. Escapar do Subterrâneo será um feito possível… mas jamais fácil."); 
+                Console.WriteLine(@"Pressione ENTER para continuar        ");
+                Console.ReadKey();
+                Console.Clear();
+                Sistemas.Menu(); //loop pro metódo Menu
                 break;
             case "3":
-                Console.WriteLine(creditos); //sofrerá alteracoes
+                Console.WriteLine(@"
+        ========================================
+                       CREDITOS
+        ========================================
+
+                GERENTE DO PROJETO
+                Isabelly Sampaio Antunes
+
+                COMUNICAÇÃO
+                Julia de Almeida dos Santos
+                Khemeronn Sophia Freitas Faziolato
+                Maria Victoria Espindola de Abreu Figueira Rocha
+                Ruan Gonçalves Gustavo
+
+                COMBATE
+                Ana Carolyna de Marins da Mota
+                Caio Cabral Araujo
+                Davi Fernandes de Oliveira Moreira
+                Lohan Victor do Nascimento Silva
+                Lucas Joe Felix dos Santos Abreu
+                Paulo Vitor Silva Ferreira
+                Rafael Almeida Diniz Filho
+                Ryan Moraes Vieira
+                Sofia de Sousa Sampaio
+
+                IMPLEMENTAÇAO POR:
+                Guilherme Sodre Souza
+                Joao Victor Lima Honorio
+                Joao Vitor Almeida Correa
+
+                MAPA
+                Andre Luiz Dutra Sales Filho
+                Arthur Porto Coutinho
+                Bruno Tavares dos Santos
+                Carolline de Silva Pimentel
+                Caua Henrique do Amaral Souza
+                Giovanna Oliveira dos Santos
+                Matheus Santos Domingues
+                Raissa Diniz Falleiro
+                Vitor Hugo Mendes Pacheco
+
+                SISTEMAS POR:
+                Arthur Santos Costa Viellas
+                Lara Porto Muniz
+                Manuella Thomaz Lino
+                Raphaella Vasquez Elias e Silva
+                Joao Pedro da Silva Guimaraes
+
+                PERSONAGENS POR:
+                Ana Clara Lanes Moura
+                Arnaldo Oliveira Meirelles
+                Isadora Figueira Faya
+                Leticia dos Santos Silva Bastos
+                Livia Barbosa Parente
+                Maria Eduarda Elizeu Soares
+                Miguel Ferreira Ribeiro Nunes
+                Vitoria Coutinho Reis
+                "); 
+                Console.WriteLine(@"Pressione ENTER para continuar        ");
+                Console.ReadKey();
+                Console.Clear();
+                Sistemas.Menu(); //loop pro metódo Menu
                 break;
             case "0":
-                Console.WriteLine("Até a próxima, aventureiro!"); //sofrerá alteracoes
+                Console.WriteLine("Até a próxima, obrigado por estar aqui!"); 
                 break;
             default:
+                Console.Clear();
                 Console.WriteLine("opção inválida, tente novamente.");
+                Sistemas.Menu(); //loop pro metódo Menu
                 break;
 
         }      
     }
 }
 
-class Principal 
+class Principal //teste de tudo
 {
     static void Main() 
     {
-    Sistemas.Menu(); // teste
+    Sistemas.Inicio();
+    Sistemas.Menu();
     }
 }
