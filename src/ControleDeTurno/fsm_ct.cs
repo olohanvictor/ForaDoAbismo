@@ -1,12 +1,15 @@
 using System;
+using Combate;
 
 public class ControleDeTurno
 {
     private IEstado estadoAtual;
+    private global::Combate.Combate combate;
 
     public ControleDeTurno()
     {
         estadoAtual = new EstadoPreparacao();
+        combate = new global::Combate.Combate();
     }
 
     public void Iniciar()
@@ -37,8 +40,8 @@ public class ControleDeTurno
     {
         return estadoAtual switch
         {
-            EstadoPreparacao => new EstadoCombate(),
-            EstadoCombate => estadoAtual, // Continua no combate
+            EstadoPreparacao => new EstadoCombate(combate),
+            EstadoCombate => estadoAtual,
             _ => estadoAtual
         };
     }
@@ -69,55 +72,56 @@ public class ControleDeTurno
         {
             Console.WriteLine("=== PREPARAÇÃO ===");
             Console.WriteLine("Prepare-se para o combate!");
+            System.Threading.Thread.Sleep(1000);
             return ResultadoTurno.Continuar;
         }
     }
 
     public class EstadoCombate : IEstado
     {
-        // Aqui que vamos usar os metodos de combater  eu fez com  switch case ,mas pode ser if e else
+        private global::Combate.Combate combate;
         private int inimigoHP = 10;
+        private int jogadorHP = 20;
+        private int turno = 0;
+
+        public EstadoCombate(global::Combate.Combate combateInstance)
+        {
+            combate = combateInstance;
+        }
 
         public ResultadoTurno ExecutarAcao()
         {
-            Console.WriteLine("\n=== COMBATE ===");
+            turno++;
+            Console.WriteLine("\n=== COMBATE - TURNO " + turno + " ===");
+            Console.WriteLine($"HP do Jogador: {jogadorHP}");
             Console.WriteLine($"HP do Inimigo: {inimigoHP}");
-            Console.WriteLine("Ação: 1 - Atacar | 2 - Defender | 3 - Fugir");
+            
+            // Simulação automática de combate para teste
+            int dano = global::Combate.Combate.Rolar(6) + 2;
+            Console.WriteLine($"\n[TURNO DO JOGADOR]");
+            Console.WriteLine($"Você atacou e causou {dano} de dano!");
+            inimigoHP -= dano;
 
-            var escolha = Console.ReadLine();
-
-            switch (escolha)
+            if (inimigoHP <= 0)
             {
-                case "1":
-                    int dano = 5 // exemplo
-                    Console.WriteLine($"Você atacou e causou {dano} de dano!");
-                    inimigoHP -= dano;
-
-                    if (inimigoHP <= 0)
-                        return ResultadoTurno.Vitoria;
-
-                    break;
-
-                case "2":
-                    Console.WriteLine("Você se defende e recebe menos dano!");
-                    break;
-
-                case "3":
-                    Console.WriteLine("Você fugiu da batalha!");
-                    return ResultadoTurno.Derrota;
-
-                default:
-                    Console.WriteLine("Comando inválido!");
-                    break;
+                Console.WriteLine($"Inimigo derrotado!");
+                return ResultadoTurno.Vitoria;
             }
 
             // Ataque do inimigo
-            int danoInimigo = 5 // exemplo
+            System.Threading.Thread.Sleep(500);
+            int danoInimigo = global::Combate.Combate.Rolar(4) + 1;
+            Console.WriteLine($"\n[TURNO DO INIMIGO]");
             Console.WriteLine($"O inimigo ataca e causa {danoInimigo} de dano!");
+            jogadorHP -= danoInimigo;
 
-            // No futuro  colocamos  HP do jogador aqui.
-           
+            if (jogadorHP <= 0)
+            {
+                Console.WriteLine($"Você foi derrotado!");
+                return ResultadoTurno.Derrota;
+            }
 
+            System.Threading.Thread.Sleep(1000);
             return ResultadoTurno.Continuar;
         }
     }
@@ -141,3 +145,4 @@ public class ControleDeTurno
             return ResultadoTurno.Derrota;
         }
     }
+}

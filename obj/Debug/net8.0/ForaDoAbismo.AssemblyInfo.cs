@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ForaDoAbismo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+786347eb216d6e801941fb279d59096dfe02057a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa87a9c1ffff46c7b87b745bf5058712b761a74b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ForaDoAbismo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ForaDoAbismo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
