@@ -1,2 +1,2 @@
 # adefinir
-Tatical RPG da turma 2003.
+Tactical RPG da turma 2003.
