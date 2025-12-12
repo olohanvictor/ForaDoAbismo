@@ -8,23 +8,41 @@ namespace Combate
 
         public void Atacar(global::Personagem.Personagem jogador, global::Personagem.Personagem inimigo, global::Personagem.Personagem.Ataque ataque)
         {
-            if (VerificarAtaque(jogador, inimigo, ataque))
+            // Se tem recurso suficiente, usa o ataque normal
+            if (jogador.Recurso >= ataque.CustoRecurso)
             {
-                if (TesteAtributo(jogador.Forca, inimigo.Agilidade))
+                if (VerificarAtaque(jogador, inimigo, ataque))
                 {
-                    inimigo.Vida = LevarDano(inimigo.Vida, inimigo.VidaMax, ataque.Dano);
-                    jogador.Recurso -= ataque.CustoRecurso;
-                    Console.WriteLine("Ataque realizado com sucesso!");
+                    if (TesteAtributo(jogador.Forca, inimigo.Agilidade))
+                    {
+                        inimigo.Vida = LevarDano(inimigo.Vida, inimigo.VidaMax, ataque.Dano);
+                        jogador.Recurso -= ataque.CustoRecurso;
+                        Console.WriteLine($"⚔️ Ataque realizado com sucesso! {ataque.Dano} de dano!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("❌ O ataque errou no teste de atributo.");
+                        jogador.Recurso -= ataque.CustoRecurso;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("O ataque errou no teste de atributo.");
-                    jogador.Recurso -= ataque.CustoRecurso;
+                    Console.WriteLine("❌ Não foi possível atacar (Fora de alcance).");
                 }
             }
+            // Se não tem recurso, faz dano mínimo de 1 (como em Pokémon)
             else
             {
-                Console.WriteLine("Não foi possível atacar (Sem recurso ou fora de alcance).");
+                if (TesteAtributo(jogador.Forca, inimigo.Agilidade))
+                {
+                    int danoMinimo = 1;
+                    inimigo.Vida = LevarDano(inimigo.Vida, inimigo.VidaMax, danoMinimo);
+                    Console.WriteLine($"⚡ Ataque fraco! Sem recurso suficiente, causou apenas {danoMinimo} de dano!");
+                }
+                else
+                {
+                    Console.WriteLine("❌ Ataque fraco falhou no teste de atributo.");
+                }
             }
         }
 

@@ -1,17 +1,18 @@
 using System;
+
 namespace Personagem;
 public abstract class Personagem
 {
-    // Propriedades Públicas (para que a classe Combate possa acessar)
+    // alterei para  Propriedades Públicas (para que a classe Combate possa acessar)
     public int Fortitude { get; set; } = 0;
     public int Agilidade { get; set; } = 0;
     public int Sabedoria { get; set; } = 0;
     public int Forca { get; set; } = 0;
 
-    public int Vida { get; set; }      // Renomeado de hp para Vida (padrão C#)
-    public int VidaMax { get; set; }   // Adicionado para controle de cura/dano
+    public int Vida { get; set; }      // Renomeado de hp para Vida 
+    public int VidaMax { get; set; }   // Adicionado para controle de dano
     public int ClasseArmadura { get; set; }
-    public int Recurso { get; set; }   // Adicionado para usar nos ataques
+    public int Recurso { get; set; }  
 
     // Os ataques
     public Ataque Ataque1 { get; set; }
@@ -24,21 +25,21 @@ public abstract class Personagem
     public string Possessivo { get; protected set; }
     public string Nome { get; set; }
 
-    // Posição no Mapa (necessário para o Combate funcionar)
+    // Posição no Mapa 
     public int X { get; set; }
     public int Y { get; set; }
 
-    // Classe aninhada Ataque
+
     public class Ataque
     {
         public int Dano;
-        public int PA; // Pontos de Ação?
+        public int PA; 
         public string Nome;
         public int CustoRecurso;
-        public string Alcance; // "curto", "medio", "longo"
+        public string Alcance; 
     }
 
-    // --- MÉTODOS ---
+
 
     public string DefinirNome()
     {
@@ -60,7 +61,7 @@ public abstract class Personagem
         {
             Console.WriteLine("\nCom qual gênero você se identifica?\n1- Feminino\n2- Masculino");
             GeneroEscolha = Console.ReadLine();
-            // Console.Clear(); // Cuidado com Clear, pode apagar contexto anterior
+          
 
             if (GeneroEscolha == "1" || GeneroEscolha == "2")
             {
@@ -78,7 +79,7 @@ public abstract class Personagem
    
     public void DistribuirAtributos()
     {
-        int PontosDisponiveis = 5; // Reduzi para 5 para ser mais rápido testar
+        int PontosDisponiveis = 10; 
 
         while (PontosDisponiveis > 0)
         {
@@ -201,7 +202,7 @@ public class Arqueiro : Personagem
     public Arqueiro()
     {
         Fortitude = 8; Agilidade = 16; Sabedoria = 7; Forca = 10;
-        Recurso = 20;
+        Recurso = 25;
         RecalcularStatus(); 
 
         Ataque1 = new Ataque { Dano = 5, PA = 2, Nome = "Chuva de Flechas", CustoRecurso = 3, Alcance = "medio" };
@@ -221,7 +222,7 @@ public class Mago : Personagem
     public Mago()
     {
         Fortitude = 10; Agilidade = 8; Sabedoria = 16; Forca = 6;
-        Recurso = 30;
+        Recurso = 35;
         RecalcularStatus();
 
         Ataque1 = new Ataque { Dano = 8, PA = 2, Nome = "Bola de Fogo", CustoRecurso = 5, Alcance = "curto" };
@@ -241,7 +242,7 @@ public class Guerreiro : Personagem
     public Guerreiro()
     {
         Fortitude = 15; Agilidade = 11; Sabedoria = 9; Forca = 16;
-        Recurso = 20;
+        Recurso = 25;
         RecalcularStatus();
 
         Ataque1 = new Ataque { Dano = 10, PA = 2, Nome = "Investida Feroz", CustoRecurso = 8, Alcance = "curto" };
