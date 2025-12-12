@@ -272,7 +272,7 @@ Digite a opção desejada:
         
     }
 
-    public static void RevoadaDeDemônios()
+    public static void RevoadaDeDemonios()
     {
         Console.WriteLine(@"
 Durante a troca de guarda, os prisioneiros escutam um zumbido horrível ecoando 
