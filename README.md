@@ -172,4 +172,4 @@ Este é um projeto estudantil. Para contribuições, entre em contato com a equi
 
 ---
 
-**Desenvolvido com ?? pela Turma 2003**
+**Desenvolvida  pela Turma 2003**
