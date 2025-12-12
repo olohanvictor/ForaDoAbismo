@@ -12,7 +12,8 @@ public abstract class Personagem
     public int Vida { get; set; }      // Renomeado de hp para Vida 
     public int VidaMax { get; set; }   // Adicionado para controle de dano
     public int ClasseArmadura { get; set; }
-    public int Recurso { get; set; }  
+    public int Recurso { get; set; }
+    public int RecursoMax { get; set; }
 
     // Os ataques
     public Ataque Ataque1 { get; set; }
@@ -113,6 +114,7 @@ public abstract class Personagem
         VidaMax = 10 + Fortitude;
         Vida = VidaMax;
         ClasseArmadura = 10 + Agilidade;
+        // RecursoMax será definido nas subclasses
     }
 
 
@@ -203,6 +205,7 @@ public class Arqueiro : Personagem
     {
         Fortitude = 8; Agilidade = 16; Sabedoria = 7; Forca = 10;
         Recurso = 25;
+        RecursoMax = 25;
         RecalcularStatus(); 
 
         Ataque1 = new Ataque { Dano = 5, PA = 2, Nome = "Chuva de Flechas", CustoRecurso = 3, Alcance = "medio" };
@@ -223,6 +226,7 @@ public class Mago : Personagem
     {
         Fortitude = 10; Agilidade = 8; Sabedoria = 16; Forca = 6;
         Recurso = 35;
+        RecursoMax = 35;
         RecalcularStatus();
 
         Ataque1 = new Ataque { Dano = 8, PA = 2, Nome = "Bola de Fogo", CustoRecurso = 5, Alcance = "curto" };
@@ -243,6 +247,7 @@ public class Guerreiro : Personagem
     {
         Fortitude = 15; Agilidade = 11; Sabedoria = 9; Forca = 16;
         Recurso = 25;
+        RecursoMax = 25;
         RecalcularStatus();
 
         Ataque1 = new Ataque { Dano = 10, PA = 2, Nome = "Investida Feroz", CustoRecurso = 8, Alcance = "curto" };

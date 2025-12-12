@@ -7,11 +7,15 @@ public class ControleDeTurno
     private global::Combate.Combate combate;
     private global::Personagem.Personagem jogador;
     private global::Personagem.Personagem inimigo;
+    private int vidaInicialJogador;
+    private int recursoInicialJogador;
 
     public ControleDeTurno(global::Personagem.Personagem playerPersonagem, global::Personagem.Personagem enemyPersonagem)
     {
         jogador = playerPersonagem;
         inimigo = enemyPersonagem;
+        vidaInicialJogador = jogador.Vida;
+        recursoInicialJogador = jogador.Recurso;
         estadoAtual = new EstadoPreparacao();
         combate = new global::Combate.Combate();
     }
@@ -25,8 +29,8 @@ public class ControleDeTurno
             estadoAtual = resultado switch
             {
                 ResultadoTurno.Continuar => ProximoEstado(),
-                ResultadoTurno.Vitoria   => new EstadoVitoria(),
-                ResultadoTurno.Derrota   => new EstadoDerrota(),
+                ResultadoTurno.Vitoria   => new EstadoVitoria(jogador, vidaInicialJogador, recursoInicialJogador),
+                ResultadoTurno.Derrota   => new EstadoDerrota(jogador, vidaInicialJogador, recursoInicialJogador),
                 _ => estadoAtual
             };
 
@@ -157,6 +161,7 @@ public class ControleDeTurno
                     return ExecutarAproximar();
                 case "4":
                     Console.WriteLine($"{jogador.Nome} se coloca em posição defensiva!");
+                    Console.WriteLine($"  ✨ Próxima defesa será mais efetiva!");
                     return ResultadoTurno.Continuar;
                 case "5":
                     Console.WriteLine($"{jogador.Nome} fugiu da batalha!");
@@ -233,7 +238,7 @@ public class ControleDeTurno
             jogador.Recurso -= CUSTO_APROXIMAR;
 
             int novaDistancia = Math.Abs(jogador.X - inimigo.X) + Math.Abs(jogador.Y - inimigo.Y);
-            string novaDistanciaStr = global::Combate.Combate.CalcularAlcance(jogador.X, jogador.X, inimigo.X, inimigo.Y);
+            string novaDistanciaStr = global::Combate.Combate.CalcularAlcance(jogador.X, jogador.Y, inimigo.X, inimigo.Y);
             
             Console.WriteLine($"✓ {jogador.Nome} se aproximou com {passos} passos! ({distanciaAtual} → {novaDistanciaStr})");
             Console.WriteLine($"  Posição: ({jogador.X}, {jogador.Y}) | Distância: {novaDistancia} unidades");
@@ -252,21 +257,51 @@ public class ControleDeTurno
             };
         }
 
+        private int CalcularDanoEsperado(global::Personagem.Personagem atacante, global::Personagem.Personagem defensor, global::Personagem.Personagem.Ataque ataque)
+        {
+            // Calcula dano esperado levando em conta chance de acerto
+            // Chance de acerto: 50% + bônus do atributo
+            int chancePorcentual = 50 + ((atacante.Forca - defensor.Agilidade) * 5);
+            if (chancePorcentual > 95) chancePorcentual = 95;
+            if (chancePorcentual < 5) chancePorcentual = 5;
+
+            return (ataque.Dano * chancePorcentual) / 100;
+        }
+
+        private int CalcularEficienciaRecurso(global::Personagem.Personagem atacante, global::Personagem.Personagem.Ataque ataque)
+        {
+            // Calcula dano por recurso gasto (maior = melhor eficiência)
+            if (ataque.CustoRecurso == 0) return ataque.Dano * 100;
+            return (ataque.Dano * 100) / ataque.CustoRecurso;
+        }
+
         private ResultadoTurno ExecutarTurnoInimigo()
         {
             string distancia = global::Combate.Combate.CalcularAlcance(inimigo.X, inimigo.Y, jogador.X, jogador.Y);
             int distanciaNum = Math.Abs(inimigo.X - jogador.X) + Math.Abs(inimigo.Y - jogador.Y);
 
-            // IA: tentar usar melhor ataque disponível do inimigo 
+            // IA: Estratégia inteligente baseada em situação
             global::Personagem.Personagem.Ataque ataqueEscolhido = null;
 
-            // Verifica se pode usar Ataque1
-            if (inimigo.Recurso >= inimigo.Ataque1.CustoRecurso && VerificarAlcance(inimigo.Ataque1.Alcance, distancia))
-                ataqueEscolhido = inimigo.Ataque1;
-            // Senão tenta Ataque2
-            else if (inimigo.Recurso >= inimigo.Ataque2.CustoRecurso && VerificarAlcance(inimigo.Ataque2.Alcance, distancia))
+            // 1. Se inimigo está com vida baixa e pode atacar de distância, prefere ataque de longo alcance
+            bool vidaInimigoBaixa = inimigo.Vida <= (inimigo.VidaMax * 0.3); // Menos de 30% de vida
+            
+            if (vidaInimigoBaixa && inimigo.Ataque2.Alcance == "longo" && inimigo.Recurso >= inimigo.Ataque2.CustoRecurso && VerificarAlcance(inimigo.Ataque2.Alcance, distancia))
+            {
+                // Prefere ataque à distância quando ferido
                 ataqueEscolhido = inimigo.Ataque2;
-            // Se nenhum ataque funciona, tenta andar pra frente
+            }
+            // 2. Se está perto o suficiente, usa o ataque mais poderoso disponível
+            else if (inimigo.Recurso >= inimigo.Ataque1.CustoRecurso && VerificarAlcance(inimigo.Ataque1.Alcance, distancia))
+            {
+                ataqueEscolhido = inimigo.Ataque1;
+            }
+            // 3. Senão tenta o segundo ataque
+            else if (inimigo.Recurso >= inimigo.Ataque2.CustoRecurso && VerificarAlcance(inimigo.Ataque2.Alcance, distancia))
+            {
+                ataqueEscolhido = inimigo.Ataque2;
+            }
+            // 4. Se nenhum ataque direto funciona, tenta se aproximar estrategicamente
             else if (inimigo.Recurso >= CUSTO_APROXIMAR && distanciaNum > 0)
             {
                 // Determina quanto deve se mover baseado na distância atual
@@ -307,6 +342,7 @@ public class ControleDeTurno
                 return ResultadoTurno.Continuar;
             }
 
+            // 5. Executa o ataque escolhido ou desiste
             if (ataqueEscolhido != null)
             {
                 combate.Atacar(inimigo, jogador, ataqueEscolhido);
@@ -319,7 +355,15 @@ public class ControleDeTurno
             }
             else
             {
-                Console.WriteLine($"{inimigo.Nome} não consegue atacar e fica imóvel...");
+                // Inimigo sem opções, mostra mensagem dramática
+                if (vidaInimigoBaixa)
+                {
+                    Console.WriteLine($"😰 {inimigo.Nome} está ferido e recua cautelosamente...");
+                }
+                else
+                {
+                    Console.WriteLine($"🔇 {inimigo.Nome} não consegue atacar e fica imóvel...");
+                }
             }
 
             return ResultadoTurno.Continuar;
@@ -328,25 +372,71 @@ public class ControleDeTurno
     
     public class EstadoVitoria : IEstado
     {
+        private global::Personagem.Personagem jogador;
+        private int vidaInicial;
+        private int recursoInicial;
+
+        public EstadoVitoria(global::Personagem.Personagem player, int vida, int recurso)
+        {
+            jogador = player;
+            vidaInicial = vida;
+            recursoInicial = recurso;
+        }
+
         public ResultadoTurno ExecutarAcao()
         {
             Console.WriteLine("\n" + new string('=', 50));
             Console.WriteLine("=== VITÓRIA ===");
             Console.WriteLine(new string('=', 50));
             Console.WriteLine("🏆 Você derrotou o inimigo!");
+            
+            RestaurarRecursos();
+            
             return ResultadoTurno.Vitoria;
+        }
+
+        private void RestaurarRecursos()
+        {
+            jogador.Vida = vidaInicial;
+            jogador.Recurso = recursoInicial;
+            Console.WriteLine($"\n✨ Seus recursos foram restaurados!");
+            Console.WriteLine($"  Vida: {jogador.Vida}/{jogador.VidaMax}");
+            Console.WriteLine($"  Recurso: {jogador.Recurso}");
         }
     }
 
     public class EstadoDerrota : IEstado
     {
+        private global::Personagem.Personagem jogador;
+        private int vidaInicial;
+        private int recursoInicial;
+
+        public EstadoDerrota(global::Personagem.Personagem player, int vida, int recurso)
+        {
+            jogador = player;
+            vidaInicial = vida;
+            recursoInicial = recurso;
+        }
+
         public ResultadoTurno ExecutarAcao()
         {
             Console.WriteLine("\n" + new string('=', 50));
             Console.WriteLine("=== DERROTA ===");
             Console.WriteLine(new string('=', 50));
             Console.WriteLine("😢 Você foi derrotado!");
+            
+            RestaurarRecursos();
+            
             return ResultadoTurno.Derrota;
+        }
+
+        private void RestaurarRecursos()
+        {
+            jogador.Vida = vidaInicial;
+            jogador.Recurso = recursoInicial;
+            Console.WriteLine($"\n✨ Seus recursos foram restaurados!");
+            Console.WriteLine($"  Vida: {jogador.Vida}/{jogador.VidaMax}");
+            Console.WriteLine($"  Recurso: {jogador.Recurso}");
         }
     }
 }
