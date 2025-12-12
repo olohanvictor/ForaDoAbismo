@@ -31,11 +31,11 @@
 | 26 | Manuella Thomaz Lino                             | Sistema             | Método TmprimirTitulo                                |
 | 34 | Raphaella Vasquez Elias e Silva                  | Sistema             | Método ImprimirGameOver                              |
 | 16 | João Pedro da Silva Guimarães                    | Sistema             | Método ImprimirCenas                                 |
-| 2  | Ana Clara Lanes Moura                            | Personagem          |                                                      |
-| 4  | Amaldo Oliveira Meirelles                        | Personagem          |                                                      |
-| 15 | Isadora Figueira Faya                            | Personagem          |                                                      |
-| 22 | Leticia dos Santos Silva Bastos                  | Personagem          |                                                      |
-| 23 | Livia Barbosa Parente                            | Personagem          |                                                      |
-| 27 | Maria Eduarda Elizeu Soares                      | Personagem          |                                                      |
-| 30 | Miguel Ferreira Ribeiro Nunes                    | Personagem          |                                                      |
-| 39 | Vitória Coutinho Reis                            | Personagem          |                                                      |
+| 2  | Ana Clara Lanes Moura                            | Personagem          |Método exibição e classes filhas de personagem        |
+| 4  | Amaldo Oliveira Meirelles                        | Personagem          |Personagens, ataque e auxiliando o restante do grupo  |
+| 15 | Isadora Figueira Faya                            | Personagem          |Quiz, definir nome e gênero                           |
+| 22 | Leticia dos Santos Silva Bastos                  | Personagem          |Método exibição e classes filhas de personagem        |
+| 23 | Livia Barbosa Parente                            | Personagem          |Diagrama de classes e anotações                       |
+| 27 | Maria Eduarda Elizeu Soares                      | Personagem          |Diagrama de classes e anotações                       |
+| 30 | Miguel Ferreira Ribeiro Nunes                    | Personagem          |Métodos atributos e ataques                           |
+| 39 | Vitória Coutinho Reis                            | Personagem          |Método exibição e classes filhas de personagem        |
