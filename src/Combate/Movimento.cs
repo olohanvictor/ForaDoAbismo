@@ -60,7 +60,7 @@ namespace Combate
                     continue;
                 }
 
-                // 🔹 ARMADILHA
+                //Armadilha
                 if (posicaoNova == '*')
                 {
                     AplicarDanoArmadilha();
@@ -75,14 +75,14 @@ namespace Combate
                     continue;
                 }
 
-                // 🔹 ATUALIZA POSIÇÃO
+                //Atualiza a posição
                 ArmazenadorDeMapa.pX = novoX;
                 ArmazenadorDeMapa.pY = novoY;
 
-                // 🔹 REGENERA RECURSO AO ANDAR
+                //Regenera recurso qnd anda
                 RegenerarRecurso(2);
 
-                // 🔹 INIMIGO
+                //Inimigo
                 if (posicaoNova == 'C' || posicaoNova == 'X')
                 {
                     bool venceu = IniciarCombateComInimigo(posicaoNova);
@@ -99,16 +99,16 @@ namespace Combate
                     Console.ResetColor();
                     System.Threading.Thread.Sleep(1500);
                     
-                    // 🔹 REMOVE O INIMIGO DO MAPA APÓS DERROTA
+                    //Remove o inimigo ao ser derrotado 
                     mapaAtual[novoY][novoX] = ' ';
                     
-                    // 🔹 ATUALIZA POSIÇÃO DO JOGADOR
+                    //Ataliza a posição do player
                     ArmazenadorDeMapa.pX = novoX;
                     ArmazenadorDeMapa.pY = novoY;
                     
                     Console.Clear();
                 }
-                // 🔹 TROCA DE MAPA
+                //Troca de mapa
                 else if (posicaoNova == ')' || posicaoNova == '(')
                 {
                     GerenciadorDeNivel.VerificarTrocaDeMapa();
@@ -124,7 +124,7 @@ namespace Combate
             Console.CursorVisible = true;
         }
 
-        // 🔹 REGENERAÇÃO DE RECURSO
+        //Regenerando recurso
         private static void RegenerarRecurso(int valor)
         {
             var jogador = Program.jogadorAtual;
