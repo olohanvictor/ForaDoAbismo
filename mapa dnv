@@ -1,0 +1,363 @@
+Aqui está o seu código com os comentários organizados.
+Mantive exatamente o que você escreveu (inclusive as gírias e notas pessoais), apenas mudei a posição deles para ficarem em blocos acima das linhas de código ou alinhados verticalmente. Isso melhora muito a leitura e evita que o código "quebre" visualmente no editor.
+using System;
+
+// --------------------------------------------------------------------------------
+// --- CLASSE 1: ARMAZENAMENTO DE DADOS ---
+// Repositório de dados e estado do jogo.
+//
+// como vc percebe foi comentado por ia mas eu vou dar uma passado por cima 
+// ass.Vitor 
+// alguns comments foram da rapaziada
+// --------------------------------------------------------------------------------
+public class ArmazenadorDeMapa 
+{
+    // essa classe vai armazenar todos os mapas pra depois serem impressos pelo metodo DesenharMapa()
+
+    // mudando esse numero la embaixo na linha 290 vc consegue ir alterando os mapas pra testar 
+    // sendo o primeiro mapa a partir do 0 até o 4 indice no caso o quinto mapa
+    // mas na saida de cada coisa já muda automaticamente pro outro mapa de forma progressiva    
+    // não vomos ter mapa combate pq não ter mapa destrutivel 
+    // não deve perder tanto ponto pelo que erick falou
+    // até porque o aque geral(todos os grupos) tá entregando já passou oque ele pediu
+    public static int mapaAtualIndex = 0; 
+                                         
+    // Posição do Jogador
+    public static int pY = 2;
+    public static int pX = 3;
+
+    public static char[][][] todosOsMapas = new char[][][]
+    {
+        // --- MAPA 1: Prisão (Índice 0) --- 
+        // não sei se vcs vão querer os carceireiros qualquer coisa só apagar todos
+        new char[][]
+        {
+            "[][][][][][][][][][][][][][][][][][][][][][][][][]" .ToCharArray(),
+            "[]      []     *           []   []   []   []    []" .ToCharArray(),
+            "[] P     }   []            []   []   []   []    []" .ToCharArray(),
+            "[][][][][]   []            [][][][][]_[][][]    []" .ToCharArray(),
+            "[]      []   []                                 []" .ToCharArray(), // } e _ representa a porta das celas
+            "[]       }   []               *                 []" .ToCharArray(), // * representa perigo
+            "[][][][][]   [][][]     [][][][][][][][][][][][][]" .ToCharArray(), // C represnta carcereiro
+            "[]      []                                      []" .ToCharArray(), // ) representa saída
+            "[]       }      *  []                 []        []" .ToCharArray(), // coordenada da saida Y=13 (Linha) e X=24 (Coluna).
+            "[][][][][]         []          []  *  []    D   []" .ToCharArray(), // coordenada do jogador Y=2 X=3                                                       
+            "[]                 []          []     []        []" .ToCharArray(), // 2 Demonio(representados como 1) Linha y=9 x= 21 // inimigo
+            "[]         []              *   []     [][][][][][]" .ToCharArray(), // 
+            "[]         [][][][][][][]      []               []" .ToCharArray(),
+            "[]                             []                )" .ToCharArray(),
+            "[][][][][][][][][][][][][][][][][][][][][][][][][]" .ToCharArray(),
+        },
+
+        // --- MAPA 2: Corredor (Índice 1) --- 
+        new char[][]
+        {
+            "[][][][][][][][][][][][][][][][][][][][][][][][][]" .ToCharArray(), 
+            "[]         []           [] *              []    []" .ToCharArray(),
+            "[]   [][][][] C [][][][][]   []   [][][][][]  C  (" .ToCharArray(),   // ( representa saída 
+            "[]       []             []   [] C         []    []" .ToCharArray(),   // P representa ponto de partida
+            "[] * []      [][][][]   []   [][][][][] * [] *  []" .ToCharArray(),   // * representa perigo
+            "[]   [][][][][]    []   []           []   []    []" .ToCharArray(),   // C represnta carcereiro
+            "[]    C      [] *       []      C    []   C     []" .ToCharArray(),   // ) representa ENTRADA
+            "[]   [][][][][]   [][][][][][]    [][][][][][][][]" .ToCharArray(),   // localizão player y = 13 x = 2 //a genteq fez esses comment tá //lohan eu estou de mal com vc foi babacão
+            "[]   []       []            []                  []" .ToCharArray(),   // saida y = 3 x = 25                                                     
+            "[]   [] [][][][][][][][] C  [][][][][][]   *    []" .ToCharArray(),
+            "[]   []   *   []  C   []         []      [][][] []" .ToCharArray(),
+            "[]   [][][]   []  []  [][][][]   []  [][][]  [] []" .ToCharArray(),
+            " ) P              []        []   *       []     []" .ToCharArray(),
+            "[][][][][][][][][][][][][][][][][][][][][][][][][]" .ToCharArray(),
+
+        },
+
+        // --- MAPA 3 : LAGO (Índice 2) ---
+        new char[][]
+        {
+        "[][][][][][][][][][][][][][][][][][][][][][][][][][][]  | ♣ - Árvore".ToCharArray(),
+        "[]                      ♣                            (  | ≈ - Água".ToCharArray(),
+        "[]  ♣                                    ≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]            ♣                       ≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                                ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]       ♣                     ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                ♣           ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]  ♣                         ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]          ♣                  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                              ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        ") P                 ♣            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]      ♣                           ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[][][][][][][][][][][][][][][][][][][][][][][][][][][]  |".ToCharArray(),
+        },
+        
+        // --- MAPA 3 : Lagos Com Batalha (Índice 3) ---
+        new char[][] 
+        {
+        "[][][][][][][][][][][][][][][][][][][][][][][][][][][]  | ♣ - Árvore".ToCharArray(),
+        "[]                      ♣                            (  | ≈ - Água".ToCharArray(),
+        "[]  ♣                                    ≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]            ♣                       ≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                                ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(), // peixes(representado por apenas um caracter) y= 8 x=13// inimigo
+        "[]       ♣                     ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(), // se o dado for de 0-10 tem batalha 10-20 não tem (de acordo com Mavi)
+        "[]                            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                ♣     P     ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]  ♣                         ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]          ♣                  ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]                              ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        ") P                 ♣            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[]      ♣                           ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]  |".ToCharArray(),
+        "[][][][][][][][][][][][][][][][][][][][][][][][][][][]  |".ToCharArray(),
+        },    
+   
+        // --- MAPA 4 : Cidade Costeira (Índice 4) ---
+        new char[][]
+        {
+        "[][][][][][][][][][][][][][][][][][][][]".ToCharArray(),
+        "[]    ♣                               []".ToCharArray(),// player y = 3 x = 2
+        ") P  ♣    П         ♣        П        []".ToCharArray(),
+        "[]    ♣                           ♣   []".ToCharArray(),
+        "[]                  П                 []".ToCharArray(),
+        "[]              ♣          П          []".ToCharArray(),
+        "[]   П                        ♣     П []".ToCharArray(),
+        "[]              П                     []".ToCharArray(),
+        "[]                 ♣            П     []".ToCharArray(),
+        "[]         ♣          П               []".ToCharArray(),
+        "[]       П                             (".ToCharArray(),
+        "[]           ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]".ToCharArray(),
+        "[]≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]".ToCharArray(),
+        "[]≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈[]".ToCharArray(),
+        "[][][][][][][][][][][][][][][][][][][][]".ToCharArray()
+        },
+
+        // --- MAPA 5 : FLORESTA DO BOSS (Índice 5) ---
+        new char[][]
+        {
+            "[][][][][][][][][][][][][][][][][][][][]".ToCharArray(),
+            "[]        ♣                           []".ToCharArray(),     
+            "[]      ♣        ♣            ♣       []".ToCharArray(),    // mapa 15 por 20 
+            "[]   P     ♣           ♣          ♣   []".ToCharArray(),    // P representa ponto de partida (4ª linha e 3ª coluna)
+            "[]       ♣        ♣           ♣       []".ToCharArray(),    // 
+            "[]         ♣           ♣          ♣   []".ToCharArray(),    // X representa inimigo
+            "[]      ♣       ♣     ♣      ♣        []".ToCharArray(),    // ♣ representa árvore
+            "[]        ♣            ♣         ♣   X[]".ToCharArray(),
+            "[]      ♣         ♣         ♣         []".ToCharArray(),                                                
+            "[]         ♣           ♣          ♣   []".ToCharArray(),
+            "[]      ♣       ♣           ♣         []".ToCharArray(),
+            "[]         ♣           ♣              []".ToCharArray(),
+            "[]      ♣         ♣           ♣       []".ToCharArray(),
+            "[]                                    []".ToCharArray(),
+            "[][][][][][][][][][][][][][][][][][][][]".ToCharArray(),
+        },
+    };
+}
+
+// --------------------------------------------------------------------------------
+// --- CLASSE 2: GERENCIADOR DE NÍVEL (NOVA) ---
+// Lógica para trocar de fase e reposicionar o jogador. 
+//
+// vou ver oque eu comento aqui pq essa clase e majoritariamente I.A é por bruno da pra entender o basico 
+// --------------------------------------------------------------------------------
+public class GerenciadorDeNivel
+{
+    public static void VerificarTrocaDeMapa()
+    {
+        char[][] mapaAtual = ArmazenadorDeMapa.todosOsMapas[ArmazenadorDeMapa.mapaAtualIndex];
+
+        // Verifica o que está embaixo do jogador AGORA
+        // Nota: Certifique-se que pY e pX estão dentro dos limites do array para evitar IndexOutOfRangeException
+        // acho q vcs entederam mas se a posição do jogador de alguma forma vazar da matriz vai bugar 
+        // prestar atenção no esquema de colisão da movimentação
+        // acho q se alguem tiver trocado a onde de entra e saida no caso os parenteses pdoe dar tui mas até onde eu se tá certo
+        char pisoAtual = mapaAtual[ArmazenadorDeMapa.pY][ArmazenadorDeMapa.pX];
+
+        // Se pisou na saída ')' ou '(', vai para o próximo nível
+        if (pisoAtual == ')' || pisoAtual == '(')
+        {
+            CarregarProximoNivel();
+        }
+    }
+
+    private static void CarregarProximoNivel()
+    {
+        ArmazenadorDeMapa.mapaAtualIndex++;
+
+        // Verifica se acabaram os mapas 
+        // se não tiver entednido errado quando os mapas acabarem aqui a tela vai limpar e fechar de boa.
+        if (ArmazenadorDeMapa.mapaAtualIndex >= ArmazenadorDeMapa.todosOsMapas.Length)
+        {
+            Console.Clear();
+            Environment.Exit(0);
+        }
+
+        // Procura onde o jogador deve nascer no novo mapa
+        EncontrarEntradaDoJogador();
+    }
+
+    public static void EncontrarEntradaDoJogador()
+    {
+        char[][] mapa = ArmazenadorDeMapa.todosOsMapas[ArmazenadorDeMapa.mapaAtualIndex];
+
+        for (int y = 0; y < mapa.Length; y++)
+        {
+            for (int x = 0; x < mapa[y].Length; x++)
+            {
+                if (mapa[y][x] == 'P')
+                {
+                    ArmazenadorDeMapa.pX = x;
+                    ArmazenadorDeMapa.pY = y;
+                    return; 
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------------
+// --- CLASSE 3: LÓGICA DE IMPRESSÃO ---
+// Utiliza CoresDoMapa para desenhar cada caractere.
+// --------------------------------------------------------------------------------
+public class ImprimiMapa 
+{
+    // metodo bem simples puxa as matrizes de ArmazenadorDeMapa de acordo com indice e vai imprimindo
+    public static void DesenharMapa() 
+    {
+        // Acessa as variáveis estáticas da classe ArmazenadorDeMapa
+        char[][] mapaAtual = ArmazenadorDeMapa.todosOsMapas[ArmazenadorDeMapa.mapaAtualIndex];
+
+        // Salva a cor atual do console para restaurar no final
+        ConsoleColor corOriginal = Console.ForegroundColor;
+
+        try
+        {
+            Console.SetCursorPosition(0, 0);
+        }
+        catch
+        {
+            // Fallback caso o console não suporte cursor (ex: output simples)
+            Console.Clear();
+        }
+
+        // Título que indica qual mapa está sendo desenhado 
+        Console.WriteLine($"========= Mapa C# (Nível {ArmazenadorDeMapa.mapaAtualIndex + 1}) =========");
+
+        for (int i = 0; i < mapaAtual.Length; i++)
+        {
+            // Itera caractere por caractere para aplicar cores individuais
+            // vai pegando os caracteres e seguindo padrao de cor estabelecido pela classe cores do mapa
+            for (int j = 0; j < mapaAtual[i].Length; j++)
+            {
+                char caractere = mapaAtual[i][j];
+
+                // Define a cor de primeiro plano
+                Console.ForegroundColor = CoresDoMapa.ObterCorDoCaractere(caractere);
+
+                // Imprime o caractere
+                Console.Write(caractere);
+            }
+
+            // Pula para a próxima linha após o término da linha do mapa
+            Console.WriteLine();
+        }
+
+        // Restaura a cor original do console
+        Console.ForegroundColor = corOriginal;
+    }
+}
+
+// --------------------------------------------------------------------------------
+// --- CLASSE 4: LÓGICA DE CORES ---
+// Define a cor para cada tipo de caractere no mapa.
+// --------------------------------------------------------------------------------
+public static class CoresDoMapa
+{
+    // Retorna a cor de primeiro plano (Foreground) para um dado caractere do mapa 
+    // vai pegando cada caracter e estipulando uma cor pra ele
+    // por isso ficou meio dificl de fazer as "paredes de cores" diferentes por serem o mesmo caracter
+    // se tiver solução é a gente não sabe fomos buchinhas
+    public static ConsoleColor ObterCorDoCaractere(char c)
+    {
+        switch (c)
+        {
+            // ELEMENTOS COMUNS
+            case '[':
+            case ']':
+            case '}':
+            case '_':
+                // Paredes e Portas/Barras: Cinza Padrão (Gray)
+                return ConsoleColor.Gray; 
+
+            case 'P':
+                // Jogador (Prisioneiro): Amarelo Escuro/DarkYellow
+                return ConsoleColor.Yellow; 
+
+            case 'C':
+                // Carcereiro/Guarda: Azul Claro (Cyan) para contraste
+                return ConsoleColor.Cyan; 
+
+            case '*':
+                // Perigo/Armadilha: Vermelho
+                return ConsoleColor.Red; 
+
+            case ')':
+            case '(':
+                // Saída/Entrada: Verde Brilhante (Green) para destaque
+                return ConsoleColor.Green; 
+
+            // ELEMENTOS DO MAPA LAGO
+            case '♣':
+                // Árvore: Verde
+                return ConsoleColor.Green; 
+
+            case '≈':
+                // Água/Lago: Azul
+                return ConsoleColor.Blue;
+
+            case '|':
+                // Borda de legenda
+                return ConsoleColor.DarkGray; 
+
+            default:
+                // Resto (chão/espaço vazio): Verde Escuro (DarkGreen)
+                return ConsoleColor.DarkGray;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------------
+// --- CLASSE 5: EXECUÇÃO (MAIN) --- 
+// Ponto de entrada do programa.
+// enaquanto não tirar os barras de comentario vai dar erro
+// main para executar as coisas maas vou deixar comentado para não dar pobrema e vocês terem de exemplo ae
+// --------------------------------------------------------------------------------
+//public class ExecucaoJogo
+//{
+//  static void Main(string[] args)
+//  {
+//      try { Console.CursorVisible = false; } catch { }
+
+//      // Configura o estado inicial usando a classe de dados
+//      // como eu falei se mudar esse numero aqui muda o mapa inicial ent cuido para não estragar a logica de gameplay
+//      ArmazenadorDeMapa.mapaAtualIndex = 0;
+
+//      // IMPORTANTE:
+//      // Como você adicionou o GerenciadorDeNivel, é importante garantir que o jogador
+//      // comece na posição 'P' correta do primeiro mapa antes de começar o jogo.
+//      GerenciadorDeNivel.EncontrarEntradaDoJogador();
+
+//      // se quiser inserir dialogo no meio acredito que só chamar e mudar o ArmazenadorDeMapa.mapaAtualIndex = x;
+//      // e chamar ImprimiMapa.DesenharMapa();
+//      // inserindo o dialogo depois ou entre os coisos não sei dizer agr.
+
+//      // Loop de "Simulação" simples apenas para desenhar o mapa inicial
+//      // (Em um jogo real, você teria um while(true) com leitura de teclas aqui)
+//      ImprimiMapa.DesenharMapa(); 
+
+//      // Exemplo de como você usaria o Gerenciador no loop do jogo:
+//      // 1. Ler tecla
+//      // 2. Mover Jogador
+//      // 3. GerenciadorDeNivel.VerificarTrocaDeMapa();
+//      // 4. ImprimiMapa.DesenharMapa();
+
+//      Console.ReadKey();
+//  }
+//}
